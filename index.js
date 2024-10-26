@@ -14,13 +14,17 @@ app.use(cors(
   ))
 
 // Initialize PostgreSQL client
+// const pool = new Pool({
+//     user: process.env.DB_USER,
+//     host: process.env.DB_HOST,
+//     database: process.env.DB_NAME,
+//     password: process.env.DB_PASSWORD,
+//     port: process.env.DB_PORT,
+// });
+
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-});
+    connectionString: process.env.POSTGRES_URL,
+  })
 
 async function testDbConnection() {
     try {
@@ -118,3 +122,12 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+
+
+
+// DB_HOST=localhost
+// DB_USER=postgres
+// DB_PASSWORD=kartik
+// DB_NAME=productdb
+// DB_PORT=5432
